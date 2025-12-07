@@ -10,10 +10,10 @@ let items = [
 const listElement = document.querySelector(".to-do__list");
 const formElement = document.querySelector(".to-do__form");
 const inputElement = document.querySelector(".to-do__input");
-const STORAGE_KEY = "tasks";
+const storageKey = "tasks";
 
 function loadTasks() {
-  const raw = localStorage.getItem(STORAGE_KEY);
+  const raw = localStorage.getItem(storageKey);
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
@@ -75,7 +75,7 @@ function getTasksFromDOM() {
 }
 
 function saveTasks(tasks) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  localStorage.setItem(storageKey, JSON.stringify(tasks));
 }
 
 items = loadTasks();
