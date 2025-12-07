@@ -34,16 +34,16 @@ function createItem(item) {
 
   deleteButton.addEventListener("click", () => {
     clone.remove();
-    items = getTasksFromDOM();
-    saveTasks(items);
+    const tasks = getTasksFromDOM();
+    saveTasks(tasks);
   });
 
   duplicateButton.addEventListener("click", () => {
     const itemName = textElement.textContent;
     const newItem = createItem(itemName);
     listElement.prepend(newItem);
-    items = getTasksFromDOM();
-    saveTasks(items);
+    const tasks = getTasksFromDOM();
+    saveTasks(tasks);
   });
 
   editButton.addEventListener("click", () => {
@@ -58,8 +58,8 @@ function createItem(item) {
 
   textElement.addEventListener("blur", () => {
     textElement.setAttribute("contenteditable", "false");
-    items = getTasksFromDOM();
-    saveTasks(items);
+    const tasks = getTasksFromDOM();
+    saveTasks(tasks);
   });
 
   return clone;
@@ -78,8 +78,8 @@ function saveTasks(tasks) {
   localStorage.setItem(storageKey, JSON.stringify(tasks));
 }
 
-items = loadTasks();
-items.forEach((item) => {
+const initialTasks = loadTasks();
+initialTasks.forEach((item) => {
   const node = createItem(item);
   listElement.append(node);
 });
@@ -90,8 +90,8 @@ formElement.addEventListener("submit", (event) => {
   if (value) {
     const node = createItem(value);
     listElement.prepend(node);
-    items = getTasksFromDOM();
-    saveTasks(items);
+    const tasks = getTasksFromDOM();
+    saveTasks(tasks);
   }
   inputElement.value = "";
 });
